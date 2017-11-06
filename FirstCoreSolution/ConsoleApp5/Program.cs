@@ -7,8 +7,14 @@ namespace ConsoleApp5
     {
         static void Main(string[] args)
         {
+            Customer cust1 = new Customer();
+            cust1.FistName = "Bob";
+            cust1.LastName = "Dilan";
+            cust1.Address = "Bongo 23";
+
+            Console.WriteLine($"Name:{cust1.FistName} {cust1.LastName}");
             string[] menuItems =
-            {
+            {           
                 "List All Customers",
                 "Add customer",
                 "Delete Customer",
@@ -78,7 +84,6 @@ namespace ConsoleApp5
 
         private static int ShowMenu(string[] menuItems)
         {
-            Console.Clear();
             Console.WriteLine("Select What you want to do:\n ");
             
             for (int i = 0; i < menuItems.Length; i++)
