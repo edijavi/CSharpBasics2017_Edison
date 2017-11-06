@@ -1,18 +1,33 @@
 ﻿using System;
-
+using System.Collections.Generic;
 
 namespace ConsoleApp5
 {
     class Program
     {
+        static int id = 1;
+        static List<Customer> customers = new List<Customer>();
+
         static void Main(string[] args)
         {
-            Customer cust1 = new Customer();
-            cust1.FistName = "Bob";
-            cust1.LastName = "Dilan";
-            cust1.Address = "Bongo 23";
+            var cust1 = new Customer
+            {
+                Id= id++,
+                FistName = "Bob",
+                LastName = "Dilan",
+                Address = "BongoStreet 232"
+            };
+            customers.Add(cust1);
 
-            Console.WriteLine($"Name:{cust1.FistName} {cust1.LastName}");
+            customers.Add(new Customer()
+            {
+                Id=id++,
+                FistName = "Edison",
+                LastName = "Lamar",
+                Address = "Sp Kirkevej 129"
+            });
+
+            //Console.WriteLine($"Name:{cust1.FistName} {cust1.LastName}");
             string[] menuItems =
             {           
                 "List All Customers",
@@ -56,16 +71,16 @@ namespace ConsoleApp5
                 switch (selection)
                 {
                     case 1:
-                        Console.WriteLine("List Customers");
+                        ListCustomers();                        
                         break;
                     case 2:
-                        Console.WriteLine("Add Customers");
+                        AddCustomers();
                         break;
                     case 3:
-                        Console.WriteLine("Delete Customers");
+                        DeleteCustomer();
                         break;
                     case 4:
-                        Console.WriteLine("Edit Customers");
+                        EditCustomer();
                         break;
 
                     default:
@@ -80,6 +95,77 @@ namespace ConsoleApp5
             Console.WriteLine("Bye Bye!");
             Console.ReadLine();
 
+        }
+
+        private static void EditCustomer()
+        {
+            var customer = FindCustomerById();
+            Console.WriteLine("First Name: ");
+            customer.FistName = Console.ReadLine();
+            Console.WriteLine("Last Name: ");
+            customer.LastName = Console.ReadLine();
+            Console.WriteLine("Address: ");
+            customer.Address = Console.ReadLine();
+        }
+
+        private static Customer FindCustomerById()
+        {
+            Console.WriteLine("Insert Customer Id: ");
+            int id;
+            while (!int.TryParse(Console.ReadLine(), out id))
+            {
+                Console.WriteLine("Please insert a number");
+
+            }
+            foreach (var customer in customers)
+            {
+                if (customer.Id == id)
+                {
+                    return customer;
+                }
+            }
+            return null;
+        }
+
+        private static void DeleteCustomer()
+        {
+
+            var customerFound = FindCustomerById();
+                        
+            if (customerFound != null)
+            {
+                customers.Remove(customerFound);
+            }
+        }
+
+        private static void AddCustomers()
+        {
+            Console.WriteLine("Fisrt Name: ");
+            var firstName = Console.ReadLine();
+            Console.WriteLine("Last Name: ");
+            var lasttName = Console.ReadLine();
+            Console.WriteLine("Address: ");
+            var address = Console.ReadLine();
+
+            customers.Add(new Customer()
+            {
+                Id = id++,
+                FistName = firstName,
+                LastName = lasttName,
+                Address = address,
+            });
+
+        }
+
+        private static void ListCustomers()
+        {
+            Console.WriteLine("\nList of Customers");
+          
+            foreach (var customer in customers)
+            {
+                Console.WriteLine($"Id: {customer.Id} Name: {customer.FistName} {customer.LastName} Address: {customer.Address}");
+            }
+            Console.WriteLine("\n");
         }
 
         private static int ShowMenu(string[] menuItems)
