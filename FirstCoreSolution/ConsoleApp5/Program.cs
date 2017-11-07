@@ -27,6 +27,7 @@ namespace ConsoleApp5
                 Address = "Sp Kirkevej 129"
             });
 
+            //Show the first customer saved internally
             //Console.WriteLine($"Name:{cust1.FistName} {cust1.LastName}");
             string[] menuItems =
             {           
