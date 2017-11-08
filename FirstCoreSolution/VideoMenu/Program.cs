@@ -13,22 +13,22 @@ namespace VideoMenu
             var cust1 = new Video
             {
                 Id= id++,
-                VideoName = "Bob",
-                VideoType = "Dilan",
-                VideoLocation = "BongoStreet 232"
+                VideoName = "Youtube",
+                VideoType = "Comedy",
+                VideoLocation = "Hall 2"
             };
             videos.Add(cust1);
 
             videos.Add(new Video()
             {
                 Id=id++,
-                VideoName = "Edison",
-                VideoType = "Lamar",
-                VideoLocation = "Sp Kirkevej 129"
+                VideoName = "Winter",
+                VideoType = "Nature",
+                VideoLocation = "Hall 3"
             });
 
             //Show the first video saved internally
-            //Console.WriteLine($"Name:{cust1.VideoName} {cust1.VideoType}");
+            //Console.WriteLine($"Name:{cust1.VideoName} {vid1.VideoType}");
             string[] menuItems =
             {           
                 "List All Videos",
@@ -83,7 +83,7 @@ namespace VideoMenu
             customer.VideoName = Console.ReadLine();
             Console.WriteLine("Last Name: ");
             customer.VideoType = Console.ReadLine();
-            Console.WriteLine("VideoLocation: ");
+            Console.WriteLine("Video Location: ");
             customer.VideoLocation = Console.ReadLine();
         }
 
@@ -123,7 +123,7 @@ namespace VideoMenu
             var videoName = Console.ReadLine();
             Console.WriteLine("Video Type: ");
             var videoType = Console.ReadLine();
-            Console.WriteLine("VideoLocation: ");
+            Console.WriteLine("Video Location: ");
             var location = Console.ReadLine();
 
             videos.Add(new Video()
@@ -142,14 +142,14 @@ namespace VideoMenu
           
             foreach (var video in videos)
             {
-                Console.WriteLine($"Id: {video.Id} Name: {video.VideoName} {video.VideoType} VideoLocation: {video.VideoLocation}");
+                Console.WriteLine($"Id: {video.Id} Name: {video.VideoName} Video Type: {video.VideoType} VideoLocation: {video.VideoLocation}");
             }
             Console.WriteLine("\n");
         }
 
         private static int ShowMenu(string[] menuItems)
         {
-            Console.WriteLine("Select What you want to do:\n ");
+            Console.WriteLine("Select What do you want to do:\n ");
             
             for (int i = 0; i < menuItems.Length; i++)
             {
